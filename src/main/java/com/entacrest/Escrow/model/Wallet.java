@@ -23,7 +23,7 @@ public class Wallet {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 50, nullable = false)
-    private final Statuses status = Statuses.PENDING;
+    private final Statuses status = Statuses.ACTIVE;
 
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
