@@ -6,13 +6,14 @@ import lombok.Data;
 import javax.management.ObjectName;
 import java.time.LocalDateTime;
 import java.util.Date;
+import  java.util.UUID;
 
 @Entity
 @Data
 public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private UUID id;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -20,8 +21,9 @@ public class Wallet {
 
     private Double balance;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 50, nullable = false)
-    private final Statuses status = Statuses.ACTIVE;
+    private final Statuses status = Statuses.PENDING;
 
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
