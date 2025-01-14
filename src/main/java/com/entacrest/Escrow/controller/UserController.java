@@ -23,6 +23,6 @@ public class UserController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
         return userService.registerUser(user);
 
-
+///
     }
 }
