@@ -59,4 +59,17 @@ public class UserService {
             );
         }
     }
+
+
+//    public ResponseEntity<?> loginUser(User user) {
+//        try {
+//            Optional<User> existingEmail = userRepository.findByEmail(user.getEmail());
+//            Optional<User> existingPhone = userRepository.findByPhoneNumber(user.getPhoneNumber());
+//
+//        } catch (Exception e) {
+//            return ResponseEntity.internalServerError().body(
+//                    new ResponseMessage("failed", "An error occurred" + e.getMessage())
+//            );
+//        }
+//    }
 }

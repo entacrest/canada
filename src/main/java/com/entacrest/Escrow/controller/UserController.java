@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/v1/user")
 public class UserController {
 
-
-
     private final UserService userService;
 
     @Autowired
@@ -25,6 +23,11 @@ public class UserController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
         return userService.registerUser(user);
 
-///
     }
+
+//    @PostMapping(value = "login", produces = "application/json")
+//    public ResponseEntity<?> loginUser(@valid RequestBody User user) {
+////        return userService.
+//        pass;
+//    }
 }

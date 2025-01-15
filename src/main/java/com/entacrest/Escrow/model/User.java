@@ -41,6 +41,9 @@ public class User {
 
     private String address;
 
+    @Column(columnDefinition = "boolean default true")
+    private Boolean gender = true;
+
     @Column(columnDefinition = "boolean default false")
     private final Boolean isActive = false;
 
@@ -133,6 +136,9 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public Boolean getGender() { return gender; }
+
 }
 
 
