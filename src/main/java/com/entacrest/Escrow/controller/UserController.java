@@ -24,7 +24,6 @@ public class UserController {
         return userService.registerUser(user);
 
     }
-
 //    @PostMapping(value = "login", produces = "application/json")
 //    public ResponseEntity<?> loginUser(@valid RequestBody User user) {
 ////        return userService.
