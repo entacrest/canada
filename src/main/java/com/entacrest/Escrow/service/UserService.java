@@ -72,9 +72,8 @@ public class UserService {
                 if (passwordEncoder.matches(loginRequest.getPassword(), existingUser.getPassword())) {
                     return ResponseEntity.ok(new ResponseMessage("success", "Login Successful"));
                 }
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessage("failed", "User not found"));
-            };
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessage("failed", "User not found"));
 
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(
