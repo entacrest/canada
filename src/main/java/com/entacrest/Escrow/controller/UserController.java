@@ -3,6 +3,7 @@ package com.entacrest.Escrow.controller;
 
 import com.entacrest.Escrow.model.User;
 import com.entacrest.Escrow.service.UserService;
+import com.entacrest.Escrow.DTO.LoginRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +25,8 @@ public class UserController {
         return userService.registerUser(user);
 
     }
-//    @PostMapping(value = "login", produces = "application/json")
-//    public ResponseEntity<?> loginUser(@valid RequestBody User user) {
-////        return userService.
-//        pass;
-//    }
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        return userService.loginUser(loginRequest);
+    }
 }

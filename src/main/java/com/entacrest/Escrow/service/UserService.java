@@ -1,10 +1,12 @@
 package com.entacrest.Escrow.service;
 
+import com.entacrest.Escrow.DTO.LoginRequest;
 import com.entacrest.Escrow.DTO.ResponseMessage;
 import com.entacrest.Escrow.model.Wallet;
 import com.entacrest.Escrow.repository.UserRepository;
 import com.entacrest.Escrow.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -61,15 +63,23 @@ public class UserService {
     }
 
 
-//    public ResponseEntity<?> loginUser(User user) {
-//        try {
-//            Optional<User> existingEmail = userRepository.findByEmail(user.getEmail());
-//            Optional<User> existingPhone = userRepository.findByPhoneNumber(user.getPhoneNumber());
-//
-//        } catch (Exception e) {
-//            return ResponseEntity.internalServerError().body(
-//                    new ResponseMessage("failed", "An error occurred" + e.getMessage())
-//            );
-//        }
-//    }
+    public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
+        try {
+            Optional<User> existingUserByEmail = userRepository.findByEmail(loginRequest.getEmail());
+
+            if (existingUserByEmail.isPresent()) {
+                User existingUser = existingUserByEmail.get();
+                if (passwordEncoder.matches(loginRequest.getPassword(), existingUser.getPassword())) {
+                    return ResponseEntity.ok(new ResponseMessage("success", "Login Successful"));
+                }
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessage("failed", "User not found"));
+            };
+
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(
+                    new ResponseMessage("failed", "An error occurred" + e.getMessage())
+            );
+        }
+    }
 }
